@@ -7,7 +7,7 @@ import {
     Route,
 } from "react-router-dom";
 
-import App from './App';
+import App from './pages/home/App';
 import reportWebVitals from './reportWebVitals';
 import { store } from "./store";
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect, useDispatch } from "react-redux";
-import { increment, decrement, selectCount } from "./store/features";
+import { increment, decrement, selectCount } from "../../store/features";
+import { SearchForm } from "../../components/search-form/SearchForm";
+import { OHLCTable } from "../../components/ohlc/OHLC";
 
 //TODO: remove it. Styled component test
 const Button = styled.button`
@@ -23,9 +25,8 @@ const App: React.FunctionComponent<{ count: number }> = ({ count }) => {
     console.log('API_URL:', process.env.ROBOGATE_API_URL)
     return (
         <div>
-            <h1>COUNT VALUE: {count}</h1>
-            <RedButton onClick={() => dispatch(increment())}>Plus</RedButton>
-            <GreenButton onClick={() => dispatch(decrement())}>Minus</GreenButton>
+            <SearchForm />
+            <OHLCTable />
         </div>
     );
 }
