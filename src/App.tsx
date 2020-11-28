@@ -20,6 +20,7 @@ const GreenButton = styled(Button)`
 
 const App: React.FunctionComponent<{ count: number }> = ({ count }) => {
     const dispatch = useDispatch();
+    console.log('API_URL:', process.env.ROBOGATE_API_URL)
     return (
         <div>
             <h1>COUNT VALUE: {count}</h1>
