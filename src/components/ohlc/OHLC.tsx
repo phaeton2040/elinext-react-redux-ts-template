@@ -1,7 +1,7 @@
 import React from 'react';
 import { TableWrapper, CalculatedValue, Table, THead } from './styles';
 
-export const OHLCTable: React.FunctionComponent<any> = () => {
+const OHLCTable: React.FunctionComponent<any> = () => {
     return (
         <TableWrapper>
             <div>
@@ -53,3 +53,5 @@ export const OHLCTable: React.FunctionComponent<any> = () => {
         </TableWrapper>
     )
 }
+
+export default OHLCTable;

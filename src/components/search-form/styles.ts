@@ -9,7 +9,6 @@ export const Header = styled.h2`
     padding: 10px 20px;
 `;
 export const FormWrapper = styled.div`
-    width: 50%;
     padding: 0 10px;
 `;
 export const SubmitButton = styled.button`
@@ -23,7 +22,14 @@ export const SubmitButton = styled.button`
 export const Input = styled.input`
     background-color: #f8f8f8;
     padding: 10px;
-    width: 50%;
+    margin-right: 10px;
     border: 1px solid transparent;
     border-radius: 8px;
 `;
+export const ErrorInput = styled(Input)`
+    border: 1px solid crimson;
+`
+export const Error = styled.span`
+    color: crimson;
+    font-size: 12px;
+`
