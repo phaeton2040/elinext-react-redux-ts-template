@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import countReducer from "./features/count";
+import searchReducer from "./features/search";
 import { reducer as formReducer } from 'redux-form'
 
 export const store = configureStore({
     reducer: {
-        count: countReducer,
+        search: searchReducer,
         form: formReducer
     }
 });

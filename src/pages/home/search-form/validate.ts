@@ -35,7 +35,7 @@ export const validate = (values: SearchFormValues) => {
     }
 
     if (valuesCopy.to > new Date().getFullYear()) {
-        errors.to = `Year "to" must be less than ${new Date().getFullYear()}`;
+        errors.to = `Year "to" must be less or equal to ${new Date().getFullYear()}`;
     }
 
     return errors;

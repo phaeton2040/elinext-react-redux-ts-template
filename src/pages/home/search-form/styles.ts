@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const FieldWrapper = styled.div`
     margin-bottom: 10px;
@@ -18,6 +18,9 @@ export const SubmitButton = styled.button`
     outline: none;
     padding: 10px;
     border-radius: 8px;
+    ${props => props.disabled && css`
+        opacity: .5
+    `}
 `;
 export const Input = styled.input`
     background-color: #f8f8f8;
@@ -26,9 +29,6 @@ export const Input = styled.input`
     border: 1px solid transparent;
     border-radius: 8px;
 `;
-export const ErrorInput = styled(Input)`
-    border: 1px solid crimson;
-`
 export const Error = styled.span`
     color: crimson;
     font-size: 12px;
