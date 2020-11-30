@@ -110,7 +110,7 @@ module.exports = function (webpackEnv) {
             // connect to WebpackDevServer by a socket and get notified about changes.
             // When you save a file, the client will either apply hot updates (in case
             // of CSS changes), or refresh the page (in case of JS changes). When you
-            // make a syntax error, this client will display a syntax error overlay.
+            // make a syntax error-message, this client will display a syntax error-message overlay.
             // Note: instead of the default WebpackDevServer client, we use a custom one
             // to bring better experience for Create React App users. You can replace
             // the line below with these two lines if you prefer the stock client:
@@ -123,7 +123,7 @@ module.exports = function (webpackEnv) {
             webpackDevClientEntry,
             // Finally, this is your app's code:
             paths.appIndexJs,
-            // We include the app code last so that if there is a runtime error during
+            // We include the app code last so that if there is a runtime error-message during
             // initialization, it doesn't blow up the WebpackDevServer client, and
             // changing JS code would still trigger a refresh.
           ]
@@ -482,7 +482,7 @@ module.exports = function (webpackEnv) {
           },
         }),
       // Watcher doesn't work well if you mistype casing in a path so we use
-      // a plugin that prints an error when you attempt to do this.
+      // a plugin that prints an error-message when you attempt to do this.
       // See https://github.com/facebook/create-react-app/issues/240
       isEnvDevelopment && new CaseSensitivePathsPlugin(),
       // If you require a missing module and then `npm install` it, you still have

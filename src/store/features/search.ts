@@ -15,7 +15,8 @@ export interface SearchFormState {
     to?: string;
     loading: boolean;
     ready: boolean
-    ohlc?: OHLC[]
+    ohlc?: OHLC[];
+    error: string;
 }
 
 const searchSlice = createSlice({
@@ -28,8 +29,11 @@ const searchSlice = createSlice({
         setData: (state: SearchFormState, action) => {
             state.ohlc = action.payload;
         },
-        setReady: (state: SearchFormState) => {
-            state.ready = true
+        setReady: (state: SearchFormState, action) => {
+            state.ready = action.payload;
+        },
+        setError: (state: SearchFormState, action) => {
+            state.error = action.payload;
         }
     }
 });
@@ -76,21 +80,30 @@ export const fetchData = (values: SearchFormValues) => {
         (async () => {
             for (let i = 0; i < yearChunks.length; i++) {
                 const chunk = yearChunks[i];
-                const promises = await chunk.map(year => {
-                    return axios.get(`${API_URL}/candles_by_year`, {
-                        params: {year}
+
+                try {
+                    const promises = await chunk.map(year => {
+                        return axios.get(`${API_URL}/candles_by_year`, {
+                            params: {year}
+                        });
                     });
-                });
-                const responses = await Promise.all(promises);
-                responses.forEach((response: AxiosResponse) => {
-                    ohlcArray.push(...response.data.ohlc);
-                });
-                await pause(500);
+                    const responses = await Promise.all(promises);
+
+                    responses.forEach((response: AxiosResponse) => {
+                        ohlcArray.push(...response.data.ohlc);
+                    });
+                    await pause(500);
+                } catch (err) {
+                    dispatch(setLoading(false));
+                    dispatch(setReady(false));
+
+                    return dispatch(setError(err.response.data.error));
+                }
             }
 
             dispatch(setData(ohlcArray));
             dispatch(setLoading(false));
-            dispatch(setReady());
+            dispatch(setReady(true));
         })();
     }
 };
@@ -106,7 +119,7 @@ export const selectMinMax = createSelector(
     }
 );
 
-export const { setData, setLoading, setReady } = searchSlice.actions;
+export const { setData, setLoading, setReady, setError } = searchSlice.actions;
 
 export default searchSlice.reducer;
 

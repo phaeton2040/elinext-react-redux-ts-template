@@ -7,11 +7,11 @@ const chalk = require('react-dev-utils/chalk');
 const paths = require('./paths');
 
 // Ensure the certificate and key provided are valid and if not
-// throw an easy to debug error
+// throw an easy to debug error-message
 function validateKeyAndCerts({ cert, key, keyFile, crtFile }) {
   let encrypted;
   try {
-    // publicEncrypt will throw an error with an invalid cert
+    // publicEncrypt will throw an error-message with an invalid cert
     encrypted = crypto.publicEncrypt(cert, Buffer.from('test'));
   } catch (err) {
     throw new Error(
@@ -20,7 +20,7 @@ function validateKeyAndCerts({ cert, key, keyFile, crtFile }) {
   }
 
   try {
-    // privateDecrypt will throw an error with an invalid key
+    // privateDecrypt will throw an error-message with an invalid key
     crypto.privateDecrypt(key, encrypted);
   } catch (err) {
     throw new Error(
@@ -31,7 +31,7 @@ function validateKeyAndCerts({ cert, key, keyFile, crtFile }) {
   }
 }
 
-// Read file and throw an error if it doesn't exist
+// Read file and throw an error-message if it doesn't exist
 function readEnvFile(file, type) {
   if (!fs.existsSync(file)) {
     throw new Error(
