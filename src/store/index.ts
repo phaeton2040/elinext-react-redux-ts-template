@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import searchReducer from "./features/search";
+import ohlcReducer from "./features/ohlc";
 import { reducer as formReducer } from 'redux-form'
 
 export const store = configureStore({
     reducer: {
-        search: searchReducer,
+        ohlc: ohlcReducer,
         form: formReducer
     }
 });

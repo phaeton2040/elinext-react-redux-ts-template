@@ -5,7 +5,15 @@ const data = require('./MOCK_DATA.json');
 
 app.use(cors());
 
-app.get('/candles_by_year', (req, res) => {
+const pause = (ms) => {
+    return new Promise((res) => {
+        setTimeout(() => {
+            res(null);
+        }, ms);
+    })
+}
+
+app.get('/candles_by_year', async (req, res) => {
     let { year } = req.query;
 
     if (!year) {
@@ -22,6 +30,9 @@ app.get('/candles_by_year', (req, res) => {
     const resultData = data.filter(item => {
         return item.year === parseInt(year);
     }).map(item => ({ o: item.o, h: item.h, l: item.l, c: item.c }));
+
+    // simulate response latency
+    await pause(1000);
 
     res.send({
         ohlc: resultData
