@@ -40,7 +40,7 @@ const {
 } = searchSlice.actions;
 
 export const fetchData = (values: SearchFormValues) => {
-    const API_URL = process.env.ROBOGATE_API_URL as string;
+    const API_URL = process.env.REACT_APP_API_URL as string;
     return (dispatch: (action: { payload: any; type: string; }) => void, getState: () => OHLCState) => {
         dispatch(setLoading(true));
 
